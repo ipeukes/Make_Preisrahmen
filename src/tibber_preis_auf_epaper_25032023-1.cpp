@@ -1,10 +1,8 @@
 #include <dummy.h>
+#include <accounts.hpp>
 
 #define vers "Version: 11.05.2024 tibber MAKE "
-const char *ssid = "Heise-Gaeste"; 
-const char *password = "NurFuerHeiseGaeste!";  
-const char *token = "5K4MVS-OjfWhK_4yrjOlFe1F6kJXPVf7eQYggo8ebAE"; // Demo Token durch eigenen Token ersetzen!!!
-const char *tibberApi = "https://api.tibber.com/v1-beta/gql";
+
 //############### ePaper "Gedoens" ###########################################################
 #define EPD_CS SS
 #define MAX_DISPLAY_BUFFER_SIZE (81920ul-34000ul-5000ul) // ~34000 base use, change 5000 to your application use
@@ -31,6 +29,12 @@ GxEPD2_DISPLAY_CLASS<GxEPD2_DRIVER_CLASS, MAX_HEIGHT(GxEPD2_DRIVER_CLASS)> displ
 #define AN LOW
 #define AUS HIGH
 #define RTCMEMORYSTART 65 //1.freier Speicherplatz im RTC
+
+void hole_tibber_preise();
+void epaper_ermittele_minmax();
+void epaper_ausgabe();
+void preise_aus_json();
+
 ADC_MODE(ADC_VCC);
 char buf[200]; // Buffer für sprintf
 int preis[2][24] ; //24h = 24 Preise, jeweils für den aktuellen und den folgenden Tag
